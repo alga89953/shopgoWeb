@@ -1,7 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux'
 import i1 from './i1.png'
 import { NavLink } from "react-router-dom"
+import { startLogout } from '../actions/auth';
 
 export const Navbar = () => {
+    const {email} = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(startLogout())
+    }
     return (
         <nav className="navbar navbar-expand-lg " id="cb">
             <div className="container-fluid">
@@ -39,8 +46,8 @@ export const Navbar = () => {
                     </ul>
                 </div>
                 <div className="text-left"id="es">
-                    <span>correo@gail.com </span>
-                    <button url="/" className="btn" id="b">Cerrar sesión</button>
+                    <span>{email} </span>
+                    <button onClick={handleLogout} className="btn" id="b">Cerrar sesión</button>
                 </div>
             </div>
         </nav>

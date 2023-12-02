@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux"
 
 export const Login= () =>{
   const dispatch = useDispatch()
-  const {loading} = useSelector(state => state.ui)
+  const {loading, msgError} = useSelector(state => state.ui)
   const [formValues,handleInputChange] = useForm({
     email : '',
     password : ''
@@ -19,16 +19,18 @@ export const Login= () =>{
   }
 
     return(    
-<section className="vh-100"id='section-style2'>
+<section className="vh-100" id='section-style2'>
   <div className="container py-5 h-100" >
     <div className="row d-flex justify-content-center align-items-center h-100">
     <div className="col-md-9 col-lg-6 col-xl-5">
         <img src={i2}
           className="img-fluid" alt="Sample image"/>
       </div>
+      
       <div className="col-12 col-md-8 col-lg-6 col-xl-5">
         <div className="card shadow-2-strong">
           <div className="card-body p-4 text-center"id='section-style'>
+          {(msgError) && <p>{msgError}</p>}
           <div><center><img src={i1} className="mb-2" alt="i1" width={180} height={180}/></center></div>
             <h3 className="mb-3">Inicio de Sesión</h3>
             <div className="form-outline mb-2">

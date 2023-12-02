@@ -12,6 +12,21 @@ body {
   font-family: Arial, Helvetica, fantasy;
   font-size: 20px;
 }
+#et{
+  color: #ffffff;
+  font-family: Arial, Helvetica, fantasy;
+  font-size: 22px;
+}
+#e{
+  color: #ffffff;
+  font-family: Arial, Helvetica, fantasy;
+  font-size: 25px;
+}
+#er{
+  color: #dddddd;
+  font-family: Arial, Helvetica, fantasy;
+  font-size: 18px;
+}
 #b{
   background-color: #ffffff;
   }
@@ -24,6 +39,9 @@ body {
   #cb{
     background-color: #013004ef;
     }
+    #cf{
+      background-color: #196f1fef;
+      }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,4 +1,5 @@
 import { Navbar } from "../components/Navbar"
+//import { Footer } from "../components/Footer"
 import {Route, Routes} from "react-router-dom"
 import { UserMM } from "../pages/UserMM"
 import { UserC } from "../pages/UserC"
@@ -6,9 +7,11 @@ import { Reportes } from "../pages/Reportes"
 import { Pedidos } from "../pages/Pedidos"
 import { AboutPage } from "../pages/AboutPage"
 import { HomePage } from "../pages/HomePage"
+import { Footer } from "../components/Footer"
 export const DashboardRoute = () =>{
     return(
         <>
+        
         <Navbar/>
         <Routes>
             <Route path="home" element={<HomePage/>}/>
@@ -18,6 +21,7 @@ export const DashboardRoute = () =>{
             <Route path="pedidos" element={<Pedidos/>}/>
             <Route path="about" element={<AboutPage/>}/>
         </Routes>
+        <Footer/>
         </>
         
 

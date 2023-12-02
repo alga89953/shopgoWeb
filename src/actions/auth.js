@@ -1,6 +1,8 @@
 import { types } from "../types/types";
-import { finishLoading, startLoading } from "./ui";
-import {firebase} from "../firebase/firebaseConfig";
+import { finishLoading, setError, startLoading } from "./ui";
+// Importa directamente el objeto 'auth' que ya inicializaste y exportaste en firebaseConfig.js
+import { auth } from "../firebase/firebaseConfig";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const login = (uid, email) => ({
     type: types.login,
@@ -16,23 +18,23 @@ export const logout = () => ({
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
-        dispatch(startLoading)
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        dispatch(startLoading());
+        signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
                 dispatch(login(user.uid, user.email));
-                dispatch(finishLoading);
-
+                dispatch(finishLoading());
             })
             .catch(e => {
                 console.log(e);
-                dispatch(finishLoading);
-            })
-    }
-}
+                dispatch(finishLoading());
+                dispatch(setError("Error, los datos ingresados son incorrectos"))
+            });
+    };
+};
 
-export const startLogout = () =>{
+export const startLogout = () => {
     return async(dispatch) => {
-        await firebase.auth().signOut();
+        await signOut(auth);
         dispatch(logout());
-    }
-}
+    };
+};

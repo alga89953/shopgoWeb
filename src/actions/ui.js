@@ -1,11 +1,11 @@
 import { types } from "../types/types";
 
-export const uiSetError = (err) =>({
+export const setError = (err) =>({
     type : types.uiSetError,
     payload : err
 });
 
-export const uiRemoveError = () => ({
+export const removeError = () => ({
     type : types.uiRemoveError
 });
 
