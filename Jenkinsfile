@@ -2,48 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Instalar dependencias') {
+        stage('Build') {
             steps {
-                script {
-                    sh 'npm install'
-                }
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
 
-        stage('Construir la aplicación') {
+        stage('Test') {
             steps {
-                script {
-                    sh 'npm run build'
-                }
+                sh 'npm run test'
             }
         }
 
-        stage('Desplegar la aplicación (opcional)') {
-            when {
-                expression { params.DEPLOY }
-            }
+        stage('Deploy') {
             steps {
-                script {
-                    // Agrega los pasos necesarios para desplegar tu aplicación
-                }
+                sh 'echo "Deploying application..."'
             }
-        }
-
-        stage('Ejecutar pruebas (opcional)') {
-            when {
-                expression { params.TEST }
-            }
-            steps {
-                script {
-                    // Agrega los pasos necesarios para ejecutar las pruebas
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            // Puedes agregar acciones posteriores a la ejecución del pipeline
         }
     }
 }
