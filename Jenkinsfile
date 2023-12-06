@@ -1,49 +1,38 @@
 pipeline {
     agent any
-
+    
     stages {
+        stage('Clonar repositorio') {
+            steps {
+                // Clonar el repositorio desde Git
+                git 'URL_DEL_REPOSITORIO'
+            }
+        }
+        
         stage('Instalar dependencias') {
             steps {
-                script {
-                    sh 'npm install'
-                }
+                // Instalar las dependencias usando npm
+                sh 'npm install'
             }
         }
-
-        stage('Construir la aplicación') {
+        
+        stage('Construir') {
             steps {
-                script {
-                    sh 'npm run build'
-                }
+                // Construir la aplicación React
+                sh 'npm run build'
             }
         }
-
-        stage('Desplegar la aplicación (opcional)') {
-            when {
-                expression { params.DEPLOY }
-            }
+        
+        stage('Desplegar') {
             steps {
-                script {
-                    // Agrega los pasos necesarios para desplegar tu aplicación
-                }
-            }
-        }
-
-        stage('Ejecutar pruebas (opcional)') {
-            when {
-                expression { params.TEST }
-            }
-            steps {
-                script {
-                    // Agrega los pasos necesarios para ejecutar las pruebas
-                }
+                sh 'rsync -avz ./build/ usuario@servidor:/ruta/del/despliegue'
             }
         }
     }
-
+    
     post {
         always {
-            // Puedes agregar acciones posteriores a la ejecución del pipeline
+            
         }
     }
 }
