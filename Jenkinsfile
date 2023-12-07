@@ -25,7 +25,7 @@ pipeline {
         
         stage('Desplegar') {
             steps {
-                sh 'rsync -avz ./build/ usuario@servidor:/ruta/del/despliegue'
+                sh 'rsync -avz ./build/'
             }
         }
     }
